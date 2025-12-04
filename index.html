@@ -67,19 +67,30 @@
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       display: flex; align-items: center; justify-content: center;
+      gap: 6px; 
       min-height: 34px; color: #eee;
     }
     .chip img { height: 20px; display: block; }
+    
+    /* Stats Icons */
+    .stat-icon { width: 16px; height: 16px; fill: #eee; }
 
     /* --- SOCIAL LINKS --- */
     .links { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
     .btn-link {
-      display: block; width: 100%; padding: 12px 16px;
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; padding: 12px 16px;
       border-radius: 999px; text-decoration: none;
       font-size: 0.98rem; font-weight: 600; color: #fff;
       transition: transform 0.12s ease;
+      position: relative;
     }
+    
+    .btn-content { display: flex; align-items: center; gap: 10px; }
+    .btn-icon { width: 22px; height: 22px; fill: #fff; }
+    .btn-text-group { text-align: left; line-height: 1.2; }
     .btn-link span { opacity: 0.92; font-size: 0.83rem; font-weight: 400; display: block; }
+    
     .btn-yt { background: #ff0000; }
     .btn-fb { background: #1877f2; }
     .btn-ig { background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af, #515bd4); }
@@ -131,22 +142,13 @@
     .team-name { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
     .team-role { font-size: 0.75rem; color: #aaa; margin-bottom: 10px; }
 
-    /* Social Icons Styling */
-    .team-social {
-        display: flex;
-        gap: 14px;
-        justify-content: center;
-    }
+    /* Professional Social Icons */
+    .team-social { display: flex; gap: 14px; justify-content: center; }
     .icon-link svg {
-        width: 20px;
-        height: 20px;
-        fill: #ccc;
+        width: 20px; height: 20px; fill: #ccc;
         transition: all 0.2s ease;
     }
-    .icon-link:hover svg {
-        transform: scale(1.2);
-    }
-    /* Specific Colors on Hover */
+    .icon-link:hover svg { transform: scale(1.2); }
     .icon-ig:hover svg { fill: #d62976; }
     .icon-fb:hover svg { fill: #1877F2; }
 
@@ -175,8 +177,19 @@
         <div class="chip">
              <img src="https://img.shields.io/youtube/channel/subscribers/UCBD5a3iEXVmzqulvolOh-8A?style=social" alt="YouTube Subscribers">
         </div>
-        <div class="chip">📸 Insta • 3,053</div>
-        <div class="chip">👍 FB • 10.2K</div>
+        
+        <!-- Insta Stats with SVG Icon -->
+        <div class="chip">
+            <svg class="stat-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Insta • 3,053
+        </div>
+        
+        <!-- FB Stats with SVG Icon -->
+        <div class="chip">
+            <svg class="stat-icon" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            FB • 10.2K
+        </div>
+        
         <div class="chip">
              <a href="https://www.hitwebcounter.com/" target="_blank">
              <img src="https://hitwebcounter.com/counter/counter.php?page=21461255&style=0032&nbdigits=6&type=ip&initCount=0" title="Visitors" Alt="Visitors" border="0" /></a>
@@ -185,14 +198,38 @@
 
       <!-- LINKS -->
       <div class="links">
+        
+        <!-- YouTube Button with SVG -->
         <a class="btn-link btn-yt" href="https://yt.openinapp.co/6o0jt" target="_blank">
-          🎥 YouTube Channel <span>@Virudhunagar_auto_kaaran</span>
+            <div class="btn-content">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M21.582,5.337C21.328,4.384,20.579,3.635,19.626,3.381C17.906,2.922,12,2.922,12,2.922S6.094,2.922,4.374,3.381 C3.421,3.635,2.672,4.384,2.418,5.337C1.96,7.057,1.96,12,1.96,12s0,4.943,0.458,6.663c0.254,0.953,1.003,1.702,1.956,1.956 C6.094,21.078,12,21.078,12,21.078s5.906,0,7.626-0.459c0.953-0.254,1.702-1.003,1.956-1.956C22.04,16.943,22.04,12,22.04,12 S22.04,7.057,21.582,5.337z M9.6,15.723V8.277L16.2,12L9.6,15.723z"/></svg>
+                <div class="btn-text-group">
+                    <div>YouTube Channel</div>
+                    <span>@Virudhunagar_auto_kaaran</span>
+                </div>
+            </div>
         </a>
+        
+        <!-- Instagram Button with SVG -->
         <a class="btn-link btn-ig" href="https://insta.openinapp.co/8syiu" target="_blank">
-          📸 Instagram <span>@virudhunagar_auto_kaaran</span>
+            <div class="btn-content">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <div class="btn-text-group">
+                    <div>Instagram</div>
+                    <span>@virudhunagar_auto_kaaran</span>
+                </div>
+            </div>
         </a>
+        
+        <!-- Facebook Button with SVG -->
         <a class="btn-link btn-fb" href="https://fb.openinapp.co/0m3m5" target="_blank">
-          👍 Facebook Page <span>Virudhunagar Autokaran</span>
+            <div class="btn-content">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                <div class="btn-text-group">
+                    <div>Facebook Page</div>
+                    <span>Virudhunagar Autokaran</span>
+                </div>
+            </div>
         </a>
       </div>
 
