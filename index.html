@@ -22,6 +22,32 @@
       background: radial-gradient(circle at top, #ffde59 0, #161616 55%, #000 100%);
       color: #fff;
       padding: 16px;
+      padding-top: 50px; /* Space for Marquee */
+    }
+
+    /* --- MARQUEE (News Ticker) --- */
+    .marquee-container {
+        position: fixed;
+        top: 0; left: 0; width: 100%;
+        background: #000;
+        border-bottom: 2px solid #ffde59;
+        color: #ffde59;
+        padding: 8px 0;
+        z-index: 1000;
+        font-weight: bold;
+        font-size: 0.9rem;
+        overflow: hidden;
+        white-space: nowrap;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .marquee-text {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 15s linear infinite;
+    }
+    @keyframes marquee {
+        0%   { transform: translate(0, 0); }
+        100% { transform: translate(-100%, 0); }
     }
 
     .shell {
@@ -123,6 +149,16 @@
     .btn-share { background: #333; border: 1px solid #555; }
     .btn-share:hover { background: #444; }
 
+    /* Gemini Chat Button Style */
+    .btn-gemini { 
+        background: linear-gradient(45deg, #4b90ff, #ff5546); 
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(75, 144, 255, 0.4);
+    }
+    .btn-gemini:hover { 
+        background: linear-gradient(45deg, #3a7bd5, #e74c3c); 
+    }
+
     .btn-link:hover { transform: translateY(-2px); filter: brightness(1.05); }
 
     .section-title {
@@ -181,6 +217,78 @@
     .icon-ig:hover svg { fill: #d62976; }
     .icon-fb:hover svg { fill: #1877F2; }
 
+    /* --- FLOATING WHATSAPP BUTTON --- */
+    .float-wa {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25d366;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: transform 0.3s;
+    }
+    .float-wa:hover { transform: scale(1.1); }
+    .float-wa svg { width: 35px; height: 35px; fill: white; }
+
+    /* --- CHAT MODAL (Gemini) --- */
+    .modal {
+        display: none; 
+        position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+        align-items: center; justify-content: center;
+    }
+    .modal-content {
+        background: #1a1a1a;
+        border: 2px solid #ffde59;
+        border-radius: 20px;
+        width: 90%; max-width: 400px;
+        height: 500px;
+        display: flex; flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 0 20px rgba(255, 222, 89, 0.3);
+    }
+    .modal-header {
+        background: #ffde59; color: #000;
+        padding: 15px; font-weight: bold;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .close-modal { cursor: pointer; font-size: 24px; font-weight: bold; }
+    .chat-box {
+        flex: 1; padding: 15px;
+        overflow-y: auto;
+        display: flex; flex-direction: column; gap: 10px;
+    }
+    .message {
+        padding: 10px 14px; border-radius: 12px;
+        max-width: 80%; font-size: 0.9rem; line-height: 1.4;
+    }
+    .bot-msg { background: #333; color: #fff; align-self: flex-start; border-bottom-left-radius: 2px; }
+    .user-msg { background: #ffde59; color: #000; align-self: flex-end; border-bottom-right-radius: 2px; }
+    .input-area {
+        padding: 10px; background: #222;
+        display: flex; gap: 10px;
+    }
+    .chat-input {
+        flex: 1; padding: 10px; border-radius: 20px; border: none; outline: none;
+        background: #333; color: white;
+    }
+    .send-btn {
+        background: #ffde59; color: black; border: none;
+        padding: 0 15px; border-radius: 50%; cursor: pointer;
+        font-weight: bold; font-size: 1.2rem;
+    }
+
     .footer { margin-top: 25px; font-size: 0.78rem; opacity: 0.75; }
 
     @media (max-width: 480px) {
@@ -189,10 +297,18 @@
   </style>
 </head>
 <body>
+
+  <!-- SCROLLING MARQUEE -->
+  <div class="marquee-container">
+      <div class="marquee-text">
+          🚀 Welcome to Virudhunagar Autokaran Official Page! • New Comedy Video Out Now! • Follow us on Insta & FB for daily updates! 🚖
+      </div>
+  </div>
+
   <div class="shell">
     <div class="container">
       
-      <!-- LOGO (Animation Delay 1) -->
+      <!-- LOGO -->
       <div class="avatar animate-item delay-1">
         <img src="logo.jpg" alt="Virudhunagar Autokaran logo" />
       </div>
@@ -203,7 +319,7 @@
         <p class="tagline">“Namma ooru auto pasanga oda daily comedy dose!”</p>
       </div>
 
-      <!-- STATS (Animation Delay 2) -->
+      <!-- STATS -->
       <div class="stats animate-item delay-2">
         <div class="chip">
              <img src="https://img.shields.io/youtube/channel/subscribers/UCBD5a3iEXVmzqulvolOh-8A?style=social" alt="YouTube Subscribers">
@@ -222,7 +338,7 @@
         </div>
       </div>
 
-      <!-- LINKS (Animation Delay 3) -->
+      <!-- LINKS -->
       <div class="links animate-item delay-3">
         
         <a class="btn-link btn-yt" href="https://yt.openinapp.co/6o0jt" target="_blank">
@@ -255,7 +371,18 @@
             </div>
         </a>
 
-        <!-- FEATURE: Share Button -->
+        <!-- GEMINI AI CHAT BUTTON (New Feature) -->
+        <button class="btn-link btn-gemini" onclick="toggleChat()">
+            <div class="btn-content">
+                <div style="font-size: 20px;">🤖</div>
+                <div class="btn-text-group">
+                    <div>Chat with Auto Annan</div>
+                    <span>Ask me anything (AI) ✨</span>
+                </div>
+            </div>
+        </button>
+
+        <!-- Share Button -->
         <button class="btn-link btn-share" onclick="shareSite()">
             <div class="btn-content">
                 <svg class="btn-icon" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
@@ -267,21 +394,21 @@
         </button>
       </div>
 
-      <!-- FEATURE: Embedded Video (Delay 4) -->
+      <!-- LATEST VIDEO -->
       <div class="section-title animate-item delay-4">Latest Video</div>
       <div class="video-card animate-item delay-4">
         <div class="video-container">
-            <!-- Fixed the embed URL by removing extra query parameters -->
-            <iframe src="https://www.youtube.com/embed/a8wbdGaDNEk" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <!-- Added ?hl=ta to force Tamil Interface -->
+            <iframe src="https://www.youtube.com/embed/a8wbdGaDNEk?hl=ta&cc_load_policy=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div class="video-label">📺 Watch our latest uploads</div>
       </div>
 
-      <!-- TEAM SECTION (Delay 5) -->
+      <!-- TEAM SECTION -->
       <div class="section-title animate-item delay-5">Team / Actors</div>
       <div class="team-grid animate-item delay-5">
         
-        <!-- Actor 1: Muthu Pandi -->
+        <!-- Actor 1 -->
         <div class="team-member">
           <img src="actor1.jpeg" alt="Muthu Pandi" class="team-pic" id="pic1">
           <div class="team-name">Muthu Pandi</div>
@@ -296,7 +423,7 @@
           </div>
         </div>
 
-        <!-- Actor 2: Solai -->
+        <!-- Actor 2 -->
         <div class="team-member">
           <img src="actor2.jpg" alt="Solai" class="team-pic" id="pic2">
           <div class="team-name">Solai</div>
@@ -311,7 +438,7 @@
           </div>
         </div>
 
-        <!-- Actor 3: Ramu -->
+        <!-- Actor 3 -->
         <div class="team-member">
           <img src="actor3.jpg" alt="Ramu" class="team-pic" id="pic3">
           <div class="team-name">Ramu</div>
@@ -326,7 +453,7 @@
           </div>
         </div>
 
-        <!-- Actor 4: Mathan Kumar -->
+        <!-- Actor 4 -->
         <div class="team-member">
           <img src="actor4.jpg" alt="Mathan Kumar" class="team-pic" id="pic4">
           <div class="team-name">Mathan Kumar</div>
@@ -346,6 +473,28 @@
 
       <p class="footer">Follow pannunga… daily comedy updates & auto vibes! 🚖😄</p>
     </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP BUTTON (Updated Number) -->
+  <a href="https://wa.me/918098459945?text=Hello%20Virudhunagar%20Autokaran!%20Big%20fan." class="float-wa" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.029.575 2.035.922 3.375.922 3.181 0 5.767-2.586 5.767-5.766.001-3.182-2.585-5.769-5.766-5.769zm9.307 13.68c-2.654 2.652-6.19 4.113-9.923 4.113-3.693 0-7.142-1.422-9.75-4.008l-1.665 1.758c2.973 2.929 6.892 4.542 11.082 4.542 4.188 0 8.151-1.637 11.114-4.597 3.065-3.061 4.752-7.129 4.752-11.457 0-4.329-1.687-8.397-4.752-11.458-2.964-2.96-6.926-4.597-11.114-4.597-4.188 0-8.151 1.637-11.114 4.597-2.964 2.96-4.752 7.129-4.752 11.458 0 1.933.344 3.791.979 5.518l-1.951 5.378 5.772-1.514c1.656.76 3.472 1.161 5.342 1.161 7.234 0 13.118-5.882 13.118-13.115.001-3.629-1.46-7.037-4.111-9.601z"/></svg>
+  </a>
+
+  <!-- CHAT MODAL -->
+  <div id="chatModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span>🤖 Chat with Auto Annan</span>
+              <span class="close-modal" onclick="toggleChat()">&times;</span>
+          </div>
+          <div class="chat-box" id="chatBox">
+              <div class="message bot-msg">Vanakkam! I am Auto Annan. Traffic jam or life jam, ask me anything! 🚖😎</div>
+          </div>
+          <div class="input-area">
+              <input type="text" id="userInput" class="chat-input" placeholder="Type a message..." onkeypress="handleEnter(event)">
+              <button class="send-btn" onclick="sendMessage()">➤</button>
+          </div>
+      </div>
   </div>
 
   <script>
@@ -368,6 +517,84 @@
             // Fallback for desktop/older browsers
             alert('Copy this link to share: ' + window.location.href);
         }
+    }
+
+    // Chat Modal Logic
+    const modal = document.getElementById('chatModal');
+    
+    function toggleChat() {
+        if(modal.style.display === "flex") {
+            modal.style.display = "none";
+        } else {
+            modal.style.display = "flex";
+        }
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Chat Logic
+    function handleEnter(e) {
+        if (e.key === 'Enter') sendMessage();
+    }
+
+    async function sendMessage() {
+        const input = document.getElementById('userInput');
+        const text = input.value.trim();
+        const chatBox = document.getElementById('chatBox');
+        
+        if (!text) return;
+
+        // User Message
+        const userDiv = document.createElement('div');
+        userDiv.className = 'message user-msg';
+        userDiv.textContent = text;
+        chatBox.appendChild(userDiv);
+        input.value = '';
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Loading Message
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'message bot-msg';
+        loadingDiv.textContent = 'Typing...';
+        chatBox.appendChild(loadingDiv);
+
+        try {
+            // Gemini API Call
+            const apiKey = ""; // API Key provided by environment
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{ text: "You are Virudhunagar Autokaran, a funny and sarcastic auto driver from Tamil Nadu. You speak a mix of Tamil and English (Tanglish). Be brief and witty. User says: " + text }]
+                    }]
+                })
+            });
+
+            const data = await response.json();
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Traffic jam la stuck aiten pa! Try again later.";
+
+            // Remove loading and add Bot Message
+            chatBox.removeChild(loadingDiv);
+            const botDiv = document.createElement('div');
+            botDiv.className = 'message bot-msg';
+            botDiv.textContent = reply;
+            chatBox.appendChild(botDiv);
+            
+        } catch (error) {
+            chatBox.removeChild(loadingDiv);
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'message bot-msg';
+            errorDiv.textContent = "Network issue thambi! (Error calling AI)";
+            chatBox.appendChild(errorDiv);
+        }
+        
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
 </body>
