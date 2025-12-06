@@ -31,6 +31,9 @@
       border-radius: 24px;
       background: linear-gradient(135deg, #ffde59, #ff4a4a, #9b5bff);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+      /* Animation: Pop in */
+      opacity: 0;
+      animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
     .container {
@@ -39,6 +42,29 @@
       padding: 26px 20px 26px;
       text-align: center;
     }
+
+    /* --- ANIMATIONS --- */
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-item {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+    
+    /* Animation Delays */
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
 
     /* --- LOGO --- */
     .avatar {
@@ -67,12 +93,9 @@
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       display: flex; align-items: center; justify-content: center;
-      gap: 6px; 
-      min-height: 34px; color: #eee;
+      gap: 6px; min-height: 34px; color: #eee;
     }
     .chip img { height: 20px; display: block; }
-    
-    /* Stats Icons */
     .stat-icon { width: 16px; height: 16px; fill: #eee; }
 
     /* --- SOCIAL LINKS --- */
@@ -84,8 +107,9 @@
       font-size: 0.98rem; font-weight: 600; color: #fff;
       transition: transform 0.12s ease;
       position: relative;
+      cursor: pointer;
+      border: none;
     }
-    
     .btn-content { display: flex; align-items: center; gap: 10px; }
     .btn-icon { width: 22px; height: 22px; fill: #fff; }
     .btn-text-group { text-align: left; line-height: 1.2; }
@@ -94,6 +118,11 @@
     .btn-yt { background: #ff0000; }
     .btn-fb { background: #1877f2; }
     .btn-ig { background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af, #515bd4); }
+    
+    /* New Share Button Style */
+    .btn-share { background: #333; border: 1px solid #555; }
+    .btn-share:hover { background: #444; }
+
     .btn-link:hover { transform: translateY(-2px); filter: brightness(1.05); }
 
     .section-title {
@@ -102,52 +131,52 @@
       border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;
     }
 
+    /* --- VIDEO EMBED STYLES --- */
     .video-card {
       border-radius: 14px;
       background: radial-gradient(circle at top left, rgba(255,222,89,0.18), rgba(255,255,255,0.02));
       border: 1px solid rgba(255,255,255,0.12);
-      padding: 10px; text-align: left; font-size: 0.82rem;
+      padding: 10px;
+      overflow: hidden;
     }
-    .video-card a { color: #ffde59; text-decoration: none; font-weight: 600; }
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #000;
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        border: 0;
+    }
+    .video-label { margin-top: 8px; font-size: 0.85rem; color: #ffde59; font-weight: 600; text-align: left; }
 
     /* --- TEAM SECTION --- */
     .team-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* 2 Columns */
-      gap: 12px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
     }
-
     .team-member {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 16px;
-      padding: 15px 10px;
+      border-radius: 16px; padding: 15px 10px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: flex; flex-direction: column; align-items: center;
       transition: transform 0.2s;
     }
     .team-member:hover { transform: scale(1.02); background: rgba(255,255,255,0.08); }
-
     .team-pic {
-      width: 70px; height: 70px;
-      border-radius: 50%;
-      margin-bottom: 8px;
-      object-fit: cover;
-      object-position: top; 
-      border: 2px solid #ffde59;
-      background: #333;
+      width: 70px; height: 70px; border-radius: 50%; margin-bottom: 8px;
+      object-fit: cover; object-position: top; 
+      border: 2px solid #ffde59; background: #333;
     }
-
     .team-name { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
     .team-role { font-size: 0.75rem; color: #aaa; margin-bottom: 10px; }
-
-    /* Professional Social Icons */
+    
     .team-social { display: flex; gap: 14px; justify-content: center; }
-    .icon-link svg {
-        width: 20px; height: 20px; fill: #ccc;
-        transition: all 0.2s ease;
-    }
+    .icon-link svg { width: 20px; height: 20px; fill: #ccc; transition: all 0.2s ease; }
     .icon-link:hover svg { transform: scale(1.2); }
     .icon-ig:hover svg { fill: #d62976; }
     .icon-fb:hover svg { fill: #1877F2; }
@@ -163,43 +192,39 @@
   <div class="shell">
     <div class="container">
       
-      <!-- LOGO -->
-      <div class="avatar">
+      <!-- LOGO (Animation Delay 1) -->
+      <div class="avatar animate-item delay-1">
         <img src="logo.jpg" alt="Virudhunagar Autokaran logo" />
       </div>
 
-      <h1>Virudhunagar Autokaran</h1>
-      <p class="subtitle">Tamil Comedy • Virudhunagar Vibes</p>
-      <p class="tagline">“Namma ooru auto pasanga oda daily comedy dose!”</p>
+      <div class="animate-item delay-1">
+        <h1>Virudhunagar Autokaran</h1>
+        <p class="subtitle">Tamil Comedy • Virudhunagar Vibes</p>
+        <p class="tagline">“Namma ooru auto pasanga oda daily comedy dose!”</p>
+      </div>
 
-      <!-- STATS -->
-      <div class="stats">
+      <!-- STATS (Animation Delay 2) -->
+      <div class="stats animate-item delay-2">
         <div class="chip">
              <img src="https://img.shields.io/youtube/channel/subscribers/UCBD5a3iEXVmzqulvolOh-8A?style=social" alt="YouTube Subscribers">
         </div>
-        
-        <!-- Insta Stats with SVG Icon -->
         <div class="chip">
             <svg class="stat-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             Insta • 3,053
         </div>
-        
-        <!-- FB Stats with SVG Icon -->
         <div class="chip">
             <svg class="stat-icon" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
             FB • 10.2K
         </div>
-        
         <div class="chip">
              <a href="https://www.hitwebcounter.com/" target="_blank">
              <img src="https://hitwebcounter.com/counter/counter.php?page=21461255&style=0032&nbdigits=6&type=ip&initCount=0" title="Visitors" Alt="Visitors" border="0" /></a>
         </div>
       </div>
 
-      <!-- LINKS -->
-      <div class="links">
+      <!-- LINKS (Animation Delay 3) -->
+      <div class="links animate-item delay-3">
         
-        <!-- YouTube Button with SVG -->
         <a class="btn-link btn-yt" href="https://yt.openinapp.co/6o0jt" target="_blank">
             <div class="btn-content">
                 <svg class="btn-icon" viewBox="0 0 24 24"><path d="M21.582,5.337C21.328,4.384,20.579,3.635,19.626,3.381C17.906,2.922,12,2.922,12,2.922S6.094,2.922,4.374,3.381 C3.421,3.635,2.672,4.384,2.418,5.337C1.96,7.057,1.96,12,1.96,12s0,4.943,0.458,6.663c0.254,0.953,1.003,1.702,1.956,1.956 C6.094,21.078,12,21.078,12,21.078s5.906,0,7.626-0.459c0.953-0.254,1.702-1.003,1.956-1.956C22.04,16.943,22.04,12,22.04,12 S22.04,7.057,21.582,5.337z M9.6,15.723V8.277L16.2,12L9.6,15.723z"/></svg>
@@ -210,7 +235,6 @@
             </div>
         </a>
         
-        <!-- Instagram Button with SVG -->
         <a class="btn-link btn-ig" href="https://insta.openinapp.co/8syiu" target="_blank">
             <div class="btn-content">
                 <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -221,7 +245,6 @@
             </div>
         </a>
         
-        <!-- Facebook Button with SVG -->
         <a class="btn-link btn-fb" href="https://fb.openinapp.co/0m3m5" target="_blank">
             <div class="btn-content">
                 <svg class="btn-icon" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
@@ -231,17 +254,32 @@
                 </div>
             </div>
         </a>
+
+        <!-- FEATURE: Share Button -->
+        <button class="btn-link btn-share" onclick="shareSite()">
+            <div class="btn-content">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                <div class="btn-text-group">
+                    <div>Share Page</div>
+                    <span>Send to Friends</span>
+                </div>
+            </div>
+        </button>
       </div>
 
-      <div class="section-title">Latest video</div>
-      <div class="video-card">
-        <div>🤕 மண்டைய கழுவி சரக்கு வாங்கிய நண்பர்கள்! (Part 2)</div>
-        <div><a href="https://www.youtube.com/@Virudhunagar_auto_kaaran" target="_blank">Watch on YouTube →</a></div>
+      <!-- FEATURE: Embedded Video (Delay 4) -->
+      <div class="section-title animate-item delay-4">Latest Video</div>
+      <div class="video-card animate-item delay-4">
+        <div class="video-container">
+            <!-- Fixed the embed URL by removing extra query parameters -->
+            <iframe src="https://www.youtube.com/embed/a8wbdGaDNEk" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="video-label">📺 Watch our latest uploads</div>
       </div>
 
-      <!-- --- TEAM SECTION --- -->
-      <div class="section-title">Team / Actors</div>
-      <div class="team-grid">
+      <!-- TEAM SECTION (Delay 5) -->
+      <div class="section-title animate-item delay-5">Team / Actors</div>
+      <div class="team-grid animate-item delay-5">
         
         <!-- Actor 1: Muthu Pandi -->
         <div class="team-member">
@@ -309,5 +347,28 @@
       <p class="footer">Follow pannunga… daily comedy updates & auto vibes! 🚖😄</p>
     </div>
   </div>
+
+  <script>
+    // Share Function
+    async function shareSite() {
+        const shareData = {
+            title: 'Virudhunagar Autokaran - All Links',
+            text: 'Check out all official links of Virudhunagar Autokaran - Tamil Comedy & Auto Vibes! 🚖😄',
+            url: window.location.href
+        };
+
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+                console.log('Shared successfully');
+            } catch (err) {
+                console.log('Error: ' + err);
+            }
+        } else {
+            // Fallback for desktop/older browsers
+            alert('Copy this link to share: ' + window.location.href);
+        }
+    }
+  </script>
 </body>
 </html>
